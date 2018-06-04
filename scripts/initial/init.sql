@@ -1,0 +1,4 @@
+CREATE DATABASE Akuna;
+CREATE USER akuna_std WITH PASSWORD 'akuna_std';
+GRANT ALL ON DATABASE Akuna to akuna_std;
+CREATE SCHEMA IF NOT EXISTS akuna_std AUTHORIZATION akuna_std;

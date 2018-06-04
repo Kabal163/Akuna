@@ -111,6 +111,14 @@
             <artifactId>google-api-client</artifactId>
             <version>1.23.0</version>
         </dependency>
+
+        <!-- Persistence -->
+        <dependency>
+            <groupId>org.apache.tomcat</groupId>
+            <artifactId>tomcat-dbcp</artifactId>
+            <version>7.0.55</version>
+        </dependency>
+
     </dependencies>
 
 

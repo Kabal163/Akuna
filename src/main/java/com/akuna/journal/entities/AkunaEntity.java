@@ -1,7 +1,6 @@
-package com.akuna.journal.entities.abstracts;
+package com.akuna.journal.entities;
 
-import com.akuna.journal.entities.Project;
-import com.akuna.journal.entities.abstracts.AbstractEntity;
+import com.akuna.journal.entities.impls.Project;
 
 import javax.persistence.*;
 

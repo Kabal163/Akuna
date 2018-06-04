@@ -1,6 +1,6 @@
 package com.akuna.journal.entities;
 
-import com.akuna.journal.entities.abstracts.AkunaEntity;
+import com.akuna.journal.entities.impls.Project;
 import com.akuna.security.entites.User;
 
 import javax.persistence.*;

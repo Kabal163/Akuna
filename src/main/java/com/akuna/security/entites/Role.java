@@ -1,11 +1,8 @@
 package com.akuna.security.entites;
 
-import com.akuna.journal.entities.abstracts.AbstractEntity;
+import com.akuna.journal.entities.AbstractEntity;
 
 import javax.persistence.*;
-import java.math.BigInteger;
-import java.util.ArrayList;
-import java.util.List;
 
 @Entity
 @Table(name = "ROLES")

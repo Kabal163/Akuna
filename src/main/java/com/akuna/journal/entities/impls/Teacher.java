@@ -1,7 +1,6 @@
-package com.akuna.journal.entities;
+package com.akuna.journal.entities.impls;
 
-import com.akuna.sections.entities.Group;
-import com.akuna.sections.entities.Section;
+import com.akuna.journal.entities.Person;
 
 import javax.persistence.*;
 import java.util.ArrayList;

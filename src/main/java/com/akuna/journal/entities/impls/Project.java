@@ -1,11 +1,8 @@
-package com.akuna.journal.entities;
+package com.akuna.journal.entities.impls;
 
-import com.akuna.journal.entities.abstracts.AbstractEntity;
-import com.google.api.client.util.DateTime;
+import com.akuna.journal.entities.AbstractEntity;
 
 import javax.persistence.*;
-import java.math.BigInteger;
-import java.sql.Date;
 import java.util.Calendar;
 
 @Entity

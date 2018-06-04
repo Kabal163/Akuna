@@ -1,11 +1,9 @@
 package com.akuna.security.entites;
 
-import com.akuna.journal.entities.Person;
-import com.akuna.journal.entities.Project;
-import com.akuna.journal.entities.abstracts.AkunaEntity;
+import com.akuna.journal.entities.impls.Project;
+import com.akuna.journal.entities.AkunaEntity;
 
 import javax.persistence.*;
-import java.math.BigInteger;
 import java.util.ArrayList;
 import java.util.List;
 

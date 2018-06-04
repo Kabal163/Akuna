@@ -1,8 +1,6 @@
-package com.akuna.sections.entities;
+package com.akuna.journal.entities.impls;
 
-import com.akuna.journal.entities.Project;
-import com.akuna.journal.entities.Teacher;
-import com.akuna.journal.entities.abstracts.AkunaEntity;
+import com.akuna.journal.entities.AkunaEntity;
 
 import javax.persistence.*;
 import java.util.ArrayList;

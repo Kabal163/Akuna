@@ -1,4 +1,4 @@
-package com.akuna.journal.entities.abstracts;
+package com.akuna.journal.entities;
 
 import javax.persistence.*;
 import java.math.BigInteger;

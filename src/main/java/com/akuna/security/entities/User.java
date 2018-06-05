@@ -1,4 +1,4 @@
-package com.akuna.security.entites;
+package com.akuna.security.entities;
 
 import com.akuna.journal.entities.impls.Project;
 import com.akuna.journal.entities.AkunaEntity;

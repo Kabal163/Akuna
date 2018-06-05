@@ -1,4 +1,4 @@
-package com.akuna.security.entites;
+package com.akuna.security.entities;
 
 import com.akuna.journal.entities.AbstractEntity;
 

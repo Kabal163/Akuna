@@ -9,31 +9,49 @@ import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.PropertySource;
 import org.springframework.core.env.Environment;
 import org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor;
+import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 import org.springframework.orm.hibernate5.HibernateTransactionManager;
 import org.springframework.orm.hibernate5.LocalSessionFactoryBean;
+import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
+import org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter;
 import org.springframework.transaction.annotation.EnableTransactionManagement;
 
+import javax.persistence.EntityManagerFactory;
 import javax.sql.DataSource;
 import java.util.Properties;
 
 @Configuration
-@EnableTransactionManagement
 @PropertySource("/persistence-postgres.properties")
-@ComponentScan({ "com.akuna.journal" })
+@ComponentScan({ "com.akuna.security.entities", "com.akuna.journal.entities" })
 public class PersistenceConfig {
 
     @Autowired
     private Environment env;
 
-    @Bean
+/*    @Bean
     public LocalSessionFactoryBean sessionFactory()
     {
         LocalSessionFactoryBean sessionFactory = new LocalSessionFactoryBean();
         sessionFactory.setDataSource(restDataSource());
-        sessionFactory.setPackagesToScan("com.akuna.journal.entities");
+        sessionFactory.setPackagesToScan("com.akuna.security.entities", "com.akuna.journal.entities");
         sessionFactory.setHibernateProperties(hibernateProperties());
 
         return sessionFactory;
+    }*/
+
+    @Bean
+    public EntityManagerFactory entityManagerFactory() {
+
+        HibernateJpaVendorAdapter vendorAdapter = new HibernateJpaVendorAdapter();
+        vendorAdapter.setGenerateDdl(true);
+
+        LocalContainerEntityManagerFactoryBean factory = new LocalContainerEntityManagerFactoryBean();
+        factory.setJpaVendorAdapter(vendorAdapter);
+        factory.setPackagesToScan("com.akuna.security.entities", "com.akuna.journal.entities");
+        factory.setDataSource(restDataSource());
+        factory.afterPropertiesSet();
+
+        return factory.getObject();
     }
 
     @Bean
@@ -48,7 +66,7 @@ public class PersistenceConfig {
         return dataSource;
     }
 
-    @Bean
+/*    @Bean
     @Autowired
     public HibernateTransactionManager transactionManager(SessionFactory sessionFactory)
     {
@@ -56,7 +74,7 @@ public class PersistenceConfig {
         txManager.setSessionFactory(sessionFactory);
 
         return txManager;
-    }
+    }*/
 
     @Bean
     public PersistenceExceptionTranslationPostProcessor exceptionTranslation()

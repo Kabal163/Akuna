@@ -1,7 +1,7 @@
 package com.akuna.journal.entities;
 
 import com.akuna.journal.entities.impls.Project;
-import com.akuna.security.entites.User;
+import com.akuna.security.entities.User;
 
 import javax.persistence.*;
 import java.math.BigInteger;
@@ -17,8 +17,8 @@ public abstract class Person extends AkunaEntity
     @Column(name = "FIRST_NAME")
     private String firstName;
 
-    @Column(name = "SECOND_NAME")
-    private String secondName;
+    @Column(name = "LAST_NAME")
+    private String lastName;
 
     @Column(name = "MIDDLE_NAME")
     private String middleName;
@@ -58,14 +58,14 @@ public abstract class Person extends AkunaEntity
         this.firstName = firstName;
     }
 
-    public String getSecondName()
+    public String getLastName()
     {
-        return secondName;
+        return lastName;
     }
 
-    public void setSecondName(String secondName)
+    public void setLastName(String lastName)
     {
-        this.secondName = secondName;
+        this.lastName = lastName;
     }
 
     public String getMiddleName()
@@ -104,7 +104,7 @@ public abstract class Person extends AkunaEntity
         return "Person{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
-                ", secondName='" + secondName + '\'' +
+                ", lastName='" + lastName + '\'' +
                 ", middleName='" + middleName + '\'' +
                 ", birthday=" + birthday +
                 ", phoneNumber='" + phoneNumber + '\'' +

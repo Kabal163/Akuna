@@ -4,3 +4,4 @@ target
 scripts/initial/init.sql
 src/main/resources/persistence-postgres.properties
 src/main/resources/persistence-postgres.properties
+Kernal.iml

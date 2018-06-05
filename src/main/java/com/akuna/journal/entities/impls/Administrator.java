@@ -1,7 +1,7 @@
 package com.akuna.journal.entities.impls;
 
 import com.akuna.journal.entities.Person;
-import com.akuna.security.entites.SecretQuestion;
+import com.akuna.security.entities.SecretQuestion;
 
 import javax.persistence.*;
 

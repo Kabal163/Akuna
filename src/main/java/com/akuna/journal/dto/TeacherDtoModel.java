@@ -78,4 +78,17 @@ public class TeacherDtoModel
     public void setStreet(String street) {
         this.street = street;
     }
+
+    @Override
+    public String toString() {
+        return "TeacherDtoModel{" +
+                "firstName='" + firstName + '\'' +
+                ", lastName='" + lastName + '\'' +
+                ", middleName='" + middleName + '\'' +
+                ", email='" + email + '\'' +
+                ", phoneNumber='" + phoneNumber + '\'' +
+                ", city='" + city + '\'' +
+                ", street='" + street + '\'' +
+                '}';
+    }
 }

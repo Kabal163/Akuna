@@ -5,15 +5,15 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import java.security.Principal;
-
-@RestController
-@RequestMapping("/")
+//
+//@RestController
+//@RequestMapping("/")
 public class UserRestController {
 
-    @RequestMapping(
-            value = "user",
-            method = RequestMethod.GET)
-    public Principal user(Principal user) {
-        return user;
-    }
+//    @RequestMapping(
+//            value = "user",
+//            method = RequestMethod.GET)
+//    public Principal user(Principal user) {
+//        return user;
+//    }
 }

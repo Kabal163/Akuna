@@ -6,17 +6,17 @@ import com.akuna.security.entities.SecretQuestion;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "ADMINISTRATORS")
+@Table(name = "administrators")
 @AttributeOverrides({
-        @AttributeOverride(name = "id", column = @Column(name = "ADMIN_ID"))
+        @AttributeOverride(name = "id", column = @Column(name = "admin_id"))
 })
 public class Administrator extends Person
 {
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "QUESTION_ID", referencedColumnName = "QUESTION_ID")
+    @JoinColumn(name = "question_id", referencedColumnName = "question_id")
     private SecretQuestion secretQuestion;
 
-    @Column(name = "SECRET_ANSWER")
+    @Column(name = "secret_answer")
     private String secretAnswer;
 
     public Administrator(SecretQuestion secretQuestion, String secretAnswer, Project project)

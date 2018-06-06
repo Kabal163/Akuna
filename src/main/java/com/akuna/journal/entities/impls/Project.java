@@ -6,13 +6,13 @@ import javax.persistence.*;
 import java.util.Calendar;
 
 @Entity
-@Table(name = "PROJECTS")
+@Table(name = "projects")
 @AttributeOverrides({
-        @AttributeOverride(name = "id", column = @Column(name = "PROJECT_ID"))
+        @AttributeOverride(name = "id", column = @Column(name = "project_id"))
 })public class Project extends AbstractEntity
 {
     @Temporal(TemporalType.TIMESTAMP)
-    @Column(name="CREATION_DATE")
+    @Column(name="creation_date")
     private Calendar creationDate;
 
     public Calendar getCreationDate()

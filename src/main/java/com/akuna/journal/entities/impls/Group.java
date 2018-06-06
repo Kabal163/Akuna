@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "GROUPS")
+@Table(name = "groups")
 @AttributeOverrides({
-        @AttributeOverride(name = "id", column = @Column(name = "GROUP_ID"))
+        @AttributeOverride(name = "id", column = @Column(name = "group_id"))
 })
 public class Group extends AkunaEntity
 {
@@ -17,19 +17,19 @@ public class Group extends AkunaEntity
     private List<Section> sections = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "USERS_TO_GROUPS",
-    joinColumns = {@JoinColumn(name = "GROUP_ID", referencedColumnName = "GROUP_ID")},
-    inverseJoinColumns = {@JoinColumn(name = "STUDENT_ID", referencedColumnName = "STUDENT_ID")})
+    @JoinTable(name = "users_to_groups",
+    joinColumns = {@JoinColumn(name = "group_id", referencedColumnName = "group_id")},
+    inverseJoinColumns = {@JoinColumn(name = "student_id", referencedColumnName = "student_id")})
     private List<Student> students = new ArrayList<>();
 
     @ManyToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "TEACHER_ID", referencedColumnName = "TEACHER_ID")
+    @JoinColumn(name = "teacher_id", referencedColumnName = "teacher_id")
     private Teacher teacher;
 
-    @Column(name = "GROUP_NAME")
+    @Column(name = "group_name")
     private String groupName;
 
-    @Column(name = "GROUP_NUMBER")
+    @Column(name = "group_number")
     private String groupNumber;
 
     public Group(String groupNumber, Section section, Project project)

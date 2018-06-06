@@ -14,23 +14,23 @@ public abstract class Person extends AkunaEntity
     @GeneratedValue
     private BigInteger id;
 
-    @Column(name = "FIRST_NAME")
+    @Column(name = "first_name")
     private String firstName;
 
-    @Column(name = "LAST_NAME")
+    @Column(name = "last_name")
     private String lastName;
 
-    @Column(name = "MIDDLE_NAME")
+    @Column(name = "middle_name")
     private String middleName;
 
-    @Column(name = "BIRTHDAY")
+    @Column(name = "birthday")
     private Date birthday;
 
-    @Column(name = "PHONE_NUMBER")
+    @Column(name = "phone_number")
     private String phoneNumber;
 
     @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
     private User user;
 
     public Person(Project project)

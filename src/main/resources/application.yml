@@ -19,5 +19,23 @@
 #     userInfoUri: https://www.googleapis.com/oauth2/v3/userinfo
 #     preferTokenInfo: true
 # Server configuration
+
+spring:
+   datasource:
+      driver-class-name: org.postgresql.Driver
+      platform: postgresql
+      password: ****
+      username: ****
+      url: jdbc:postgresql://localhost:7777/akuna
+   jpa:
+      properties:
+         hibernate:
+            dialect: org.hibernate.dialect.PostgreSQL94Dialect
+            default_schema: ****
+            temp:
+              use_jdbc_metadata_defaults: false
+      hibernate:
+        ddlAuto: create-drop
+      show-sql: true
 server:
   port: 8181

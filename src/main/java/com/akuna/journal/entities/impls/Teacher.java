@@ -7,9 +7,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "TEACHERS")
+@Table(name = "teachers")
 @AttributeOverrides({
-        @AttributeOverride(name = "id", column = @Column(name = "TEACHER_ID"))
+        @AttributeOverride(name = "id", column = @Column(name = "teacher_id"))
 })
 public class Teacher extends Person
 {

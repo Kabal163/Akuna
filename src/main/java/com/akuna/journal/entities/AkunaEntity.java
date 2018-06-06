@@ -8,7 +8,7 @@ import javax.persistence.*;
 public abstract class AkunaEntity extends AbstractEntity
 {
     @ManyToOne(fetch = FetchType.EAGER)
-    @JoinColumn(name = "PROJECT_ID", referencedColumnName = "PROJECT_ID")
+    @JoinColumn(name = "project_id", referencedColumnName = "project_id")
     private Project project;
 
     public AkunaEntity(Project project)

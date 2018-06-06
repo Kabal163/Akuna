@@ -7,25 +7,25 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "SECTIONS")
+@Table(name = "sections")
 @AttributeOverrides({
-        @AttributeOverride(name = "id", column = @Column(name = "SECTION_ID"))
+        @AttributeOverride(name = "id", column = @Column(name = "section_id"))
 })
 public class Section extends AkunaEntity
 {
     @ManyToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
-    @JoinTable(name = "SECTIONS_TO_GROUPS",
-    joinColumns = {@JoinColumn(name = "SECTION_ID", referencedColumnName = "SECTION_ID")},
-    inverseJoinColumns = {@JoinColumn(name = "GROUP_ID", referencedColumnName = "GROUP_ID")})
+    @JoinTable(name = "sections_to_groups",
+    joinColumns = {@JoinColumn(name = "section_id", referencedColumnName = "section_id")},
+    inverseJoinColumns = {@JoinColumn(name = "group_id", referencedColumnName = "group_id")})
     private List<Group> groups = new ArrayList<>();
 
     @ManyToMany(fetch = FetchType.LAZY)
-    @JoinTable(name = "SECTIONS_TO_TEACHERS",
-    joinColumns = {@JoinColumn(name = "SECTION_ID", referencedColumnName = "SECTION_ID")},
-    inverseJoinColumns = {@JoinColumn(name = "TEACHER_ID", referencedColumnName = "TEACHER_ID")})
+    @JoinTable(name = "sections_to_teachers",
+    joinColumns = {@JoinColumn(name = "section_id", referencedColumnName = "section_id")},
+    inverseJoinColumns = {@JoinColumn(name = "teacher_id", referencedColumnName = "teacher_id")})
     private List<Teacher> teachers = new ArrayList<>();
 
-    @Column(name = "SECTION_NAME")
+    @Column(name = "section_name")
     private String sectionName;
 
     public Section(String sectionName, Project project)

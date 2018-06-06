@@ -8,16 +8,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "USERS")
+@Table(name = "users", schema = "akuna_std")
 @AttributeOverrides({
-        @AttributeOverride(name = "id", column = @Column(name = "USER_ID"))
+        @AttributeOverride(name = "id", column = @Column(name = "user_id"))
 })
 public class User extends AkunaEntity
 {
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "USERS_ROLES",
-    joinColumns = {@JoinColumn(name = "USER_ID", referencedColumnName = "USER_ID")},
-    inverseJoinColumns = {@JoinColumn(name = "ROLE_ID", referencedColumnName = "ROLE_ID")})
+    @JoinTable(name = "users_to_roles",
+    joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
+    inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")})
     private List<Role> roles = new ArrayList<>(2);
 
     private String userName;

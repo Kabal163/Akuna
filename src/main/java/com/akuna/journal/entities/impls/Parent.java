@@ -7,16 +7,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Entity
-@Table(name = "PARENTS")
+@Table(name = "parents")
 @AttributeOverrides({
-        @AttributeOverride(name = "id", column = @Column(name = "PARENT_ID"))
+        @AttributeOverride(name = "id", column = @Column(name = "parent_id"))
 })
 public class Parent extends Person
 {
     @ManyToMany(fetch = FetchType.EAGER)
-    @JoinTable(name = "STUDENTS_TO_PARENTS",
-    joinColumns = {@JoinColumn(name = "PARENT_ID", referencedColumnName = "PARENT_ID")},
-    inverseJoinColumns = {@JoinColumn(name = "STUDENT_ID", referencedColumnName = "STUDENT_ID")})
+    @JoinTable(name = "students_to_parents",
+    joinColumns = {@JoinColumn(name = "parent_id", referencedColumnName = "parent_id")},
+    inverseJoinColumns = {@JoinColumn(name = "student_id", referencedColumnName = "student_id")})
     private List<Student> students = new ArrayList<>();
 
     public Parent(List<Student> students, Project project)

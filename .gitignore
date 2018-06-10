@@ -7,3 +7,4 @@ src/main/resources/persistence-postgres.properties
 Kernal.iml
 src/main/resources/persistence-h2.properties
 src/main/resources/persistence-h2.properties
+src/main/resources/application.yml

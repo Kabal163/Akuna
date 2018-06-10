@@ -1,6 +1,8 @@
 package com.akuna.journal.dto;
 
-public class TeacherDtoModel
+import java.util.Objects;
+
+public abstract class PersonDto
 {
     private String firstName;
     private String lastName;
@@ -10,7 +12,7 @@ public class TeacherDtoModel
     private String city;
     private String street;
 
-    public TeacherDtoModel(String firstName, String lastName, String middleName, String email, String phoneNumber, String city, String street) {
+    public PersonDto(String firstName, String lastName, String middleName, String email, String phoneNumber, String city, String street) {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
@@ -20,7 +22,7 @@ public class TeacherDtoModel
         this.street = street;
     }
 
-    public TeacherDtoModel() {
+    public PersonDto() {
     }
 
     public String getFirstName() {
@@ -80,8 +82,28 @@ public class TeacherDtoModel
     }
 
     @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        PersonDto personDto = (PersonDto) o;
+        return Objects.equals(getFirstName(), personDto.getFirstName()) &&
+                Objects.equals(getLastName(), personDto.getLastName()) &&
+                Objects.equals(getMiddleName(), personDto.getMiddleName()) &&
+                Objects.equals(getEmail(), personDto.getEmail()) &&
+                Objects.equals(getPhoneNumber(), personDto.getPhoneNumber()) &&
+                Objects.equals(getCity(), personDto.getCity()) &&
+                Objects.equals(getStreet(), personDto.getStreet());
+    }
+
+    @Override
+    public int hashCode() {
+
+        return Objects.hash(getFirstName(), getLastName(), getMiddleName(), getEmail(), getPhoneNumber(), getCity(), getStreet());
+    }
+
+    @Override
     public String toString() {
-        return "TeacherDtoModel{" +
+        return "PersonDto{" +
                 "firstName='" + firstName + '\'' +
                 ", lastName='" + lastName + '\'' +
                 ", middleName='" + middleName + '\'' +

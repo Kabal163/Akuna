@@ -18,6 +18,9 @@ public class SecretQuestion extends AbstractEntity
         this.question = question;
     }
 
+    public SecretQuestion() {
+    }
+
     public String getQuestion()
     {
         return question;

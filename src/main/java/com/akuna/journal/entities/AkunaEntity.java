@@ -16,8 +16,14 @@ public abstract class AkunaEntity extends AbstractEntity
         this.project = project;
     }
 
+    public AkunaEntity() {}
+
     public Project getProject()
     {
         return project;
+    }
+
+    public void setProject(Project project) {
+        this.project = project;
     }
 }

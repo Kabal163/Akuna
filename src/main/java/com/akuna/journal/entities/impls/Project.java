@@ -11,12 +11,18 @@ import java.util.Calendar;
         @AttributeOverride(name = "id", column = @Column(name = "project_id"))
 })public class Project extends AbstractEntity
 {
-    @Temporal(TemporalType.TIMESTAMP)
+    @Temporal(TemporalType.DATE)
     @Column(name="creation_date")
     private Calendar creationDate;
+
+    public Project() {}
 
     public Calendar getCreationDate()
     {
         return creationDate;
+    }
+
+    public void setCreationDate(Calendar creationDate) {
+        this.creationDate = creationDate;
     }
 }

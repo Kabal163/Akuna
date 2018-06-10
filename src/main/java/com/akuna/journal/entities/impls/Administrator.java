@@ -26,6 +26,8 @@ public class Administrator extends Person
         this.secretAnswer = secretAnswer;
     }
 
+    public Administrator() {}
+
     public SecretQuestion getSecretQuestion()
     {
         return secretQuestion;
@@ -43,5 +45,13 @@ public class Administrator extends Person
                 "secretQuestion=" + secretQuestion +
                 ", secretAnswer='" + secretAnswer + '\'' +
                 '}';
+    }
+
+    public void setSecretQuestion(SecretQuestion secretQuestion) {
+        this.secretQuestion = secretQuestion;
+    }
+
+    public void setSecretAnswer(String secretAnswer) {
+        this.secretAnswer = secretAnswer;
     }
 }

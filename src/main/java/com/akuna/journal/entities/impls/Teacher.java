@@ -25,10 +25,9 @@ public class Teacher extends Person
         this.sections = sections;
     }
 
-    public Teacher(Section section, Project project)
+    public Teacher(Project project)
     {
         super(project);
-        this.sections.add(section);
     }
 
     public List<Section> getSections()

@@ -1,4 +1,4 @@
-package com.akuna.journal.repos;
+package com.akuna.journal.dao;
 
 import com.akuna.security.entities.SecretQuestion;
 import org.springframework.data.jpa.repository.JpaRepository;

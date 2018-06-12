@@ -17,11 +17,11 @@ public class CustomUserDetails //implements UserDetails
 //
 //    public CustomUserDetails(User user)
 //    {
-//        this.userName = user.getUserName();
+//        this.userName = user.getUsername();
 //        this.password = user.getPassword();
 //
 //        List<GrantedAuthority> auth = user.getRoles().stream()
-//                .map(role ->  new SimpleGrantedAuthority(role.getName().toUpperCase()))
+//                .map(role ->  new SimpleGrantedAuthority(role.getRoleName().toUpperCase()))
 //                .distinct()
 //                .collect(Collectors.toList());
 //    }

@@ -11,29 +11,30 @@ import javax.persistence.*;
 })
 public class Role extends AbstractEntity
 {
-    private String name;
+    @Column(name = "role_name")
+    private String roleName;
 
-    public Role(String name)
+    public Role(String roleName)
     {
-        this.name = name;
+        this.roleName = roleName;
     }
 
 
-    public String getName()
+    public String getRoleName()
     {
-        return name;
+        return roleName;
     }
 
-    public void setName(String name)
+    public void setRoleName(String roleName)
     {
-        this.name = name;
+        this.roleName = roleName;
     }
 
     @Override
     public String toString()
     {
         return "Role{" +
-                ", name='" + name + '\'' +
+                ", roleName='" + roleName + '\'' +
                 '}';
     }
 }

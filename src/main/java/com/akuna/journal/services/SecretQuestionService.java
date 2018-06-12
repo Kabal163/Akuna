@@ -1,6 +1,6 @@
 package com.akuna.journal.services;
 
-import com.akuna.journal.repos.SecretQuestionRepository;
+import com.akuna.journal.dao.SecretQuestionRepository;
 import com.akuna.security.entities.SecretQuestion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;

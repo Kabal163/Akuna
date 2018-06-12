@@ -2,7 +2,7 @@ package com.akuna.journal.services;
 
 import com.akuna.journal.entities.impls.Administrator;
 import com.akuna.journal.entities.impls.Project;
-import com.akuna.journal.repos.AdministratorRepository;
+import com.akuna.journal.dao.AdministratorRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;

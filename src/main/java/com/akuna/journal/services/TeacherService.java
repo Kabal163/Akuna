@@ -1,7 +1,7 @@
 package com.akuna.journal.services;
 
 import com.akuna.journal.entities.impls.Teacher;
-import com.akuna.journal.repos.TeacherRepository;
+import com.akuna.journal.dao.TeacherRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;

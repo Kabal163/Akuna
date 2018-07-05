@@ -2,8 +2,8 @@ spring:
   datasource:
     driver-class-name: org.postgresql.Driver
     platform: postgresql
-    password: akuna_std
-    username: akuna_std
+    password: {password}
+    username: {username}
     url: jdbc:postgresql://localhost:7777/akuna
   jpa:
     properties:

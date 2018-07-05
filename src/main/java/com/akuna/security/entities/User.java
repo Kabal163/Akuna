@@ -27,14 +27,18 @@ public class User extends AkunaEntity
     @Column(name = "password")
     private String password;
 
+    @Column(name = "active")
+    private boolean isActive;
+
     @Transient
     private String confirmPassword;
 
-    public User(List<Role> roles, String username, String password, String confirmPassword)
+    public User(List<Role> roles, String username, String password, boolean isActive, String confirmPassword)
     {
         this.roles = roles;
         this.username = username;
         this.password = password;
+        this.isActive = isActive;
         this.confirmPassword = confirmPassword;
     }
 
@@ -90,12 +94,23 @@ public class User extends AkunaEntity
         this.confirmPassword = confirmPassword;
     }
 
+    public boolean isActive()
+    {
+        return isActive;
+    }
+
+    public void setActive(boolean active)
+    {
+        isActive = active;
+    }
+
     @Override
     public String toString()
     {
         return "User{" +
-                ", roles=" + roles +
-                ", username='" + username + '\'' +
+                "username='" + username + '\'' +
+                ", password='" + password + '\'' +
+                ", isActive=" + isActive +
                 '}';
     }
 }

@@ -7,27 +7,32 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.Optional;
+
 @Service
 public class UserServiceImpl implements UserService
 {
-    @Autowired
-    private UserRepository repository;
+    private final UserRepository repository;
+
+
+    private final PasswordEncoder bCryptPasswordEncoder;
 
     @Autowired
-    private RoleService roleService;
-
-    @Autowired
-    private PasswordEncoder bCryptPasswordEncoder;
+    public UserServiceImpl(UserRepository repository,
+                           PasswordEncoder bCryptPasswordEncoder)
+    {
+        this.repository = repository;
+        this.bCryptPasswordEncoder = bCryptPasswordEncoder;
+    }
 
     @Override
     public void save(User user) {
         user.setPassword(bCryptPasswordEncoder.encode(user.getPassword()));
-        user.addRole(roleService.getDefaultRole());
         repository.save(user);
     }
 
     @Override
-    public User findByUsername(String username) {
+    public Optional<User> getByUsername(String username) {
         return repository.findByUsername(username);
     }
 }

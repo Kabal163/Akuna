@@ -6,7 +6,9 @@ import org.hibernate.validator.constraints.UniqueElements;
 
 import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
 
 @Entity
 @Table(name = "users", schema = "akuna_std")
@@ -15,11 +17,17 @@ import java.util.List;
 })
 public class User extends AkunaEntity
 {
-    @ManyToMany
-    @JoinTable(name = "users_to_roles",
-    joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
-    inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")})
-    private List<Role> roles = new ArrayList<>(2);
+//    @ManyToMany
+//    @JoinTable(name = "users_to_roles",
+//    joinColumns = {@JoinColumn(name = "user_id", referencedColumnName = "user_id")},
+//    inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")})
+//    private Set<Role> roles;
+
+    @ElementCollection(targetClass = Role.class)
+    @CollectionTable(name = "user_role",
+        joinColumns = @JoinColumn(name = "user_id"))
+    @Column(name = "role")
+    private Set<Role> roles;
 
     @Column(name = "username")
     private String username;
@@ -33,7 +41,7 @@ public class User extends AkunaEntity
     @Transient
     private String confirmPassword;
 
-    public User(List<Role> roles, String username, String password, boolean isActive, String confirmPassword)
+    public User(Set<Role> roles, String username, String password, boolean isActive, String confirmPassword)
     {
         this.roles = roles;
         this.username = username;
@@ -74,12 +82,12 @@ public class User extends AkunaEntity
         this.roles.remove(role);
     }
 
-    public List<Role> getRoles()
+    public Set<Role> getRoles()
     {
         return roles;
     }
 
-    public void setRoles(List<Role> roles)
+    public void setRoles(Set<Role> roles)
     {
         this.roles = roles;
     }

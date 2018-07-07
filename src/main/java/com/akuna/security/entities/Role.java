@@ -4,37 +4,12 @@ import com.akuna.journal.entities.AbstractEntity;
 
 import javax.persistence.*;
 
-@Entity
-@Table(name = "roles", schema = "akuna_std")
-@AttributeOverrides({
-        @AttributeOverride(name = "id", column = @Column(name = "role_id"))
-})
-public class Role extends AbstractEntity
+public enum Role
 {
-    @Column(name = "role_name")
-    private String roleName;
+    ADMIN, TEACHER, STUDENT, PARENT;
 
-    public Role(String roleName)
+    public String authority()
     {
-        this.roleName = roleName;
-    }
-
-
-    public String getRoleName()
-    {
-        return roleName;
-    }
-
-    public void setRoleName(String roleName)
-    {
-        this.roleName = roleName;
-    }
-
-    @Override
-    public String toString()
-    {
-        return "Role{" +
-                ", roleName='" + roleName + '\'' +
-                '}';
+        return this.name();
     }
 }

@@ -4,6 +4,13 @@ import org.springframework.security.web.savedrequest.SavedRequest;
 
 import javax.servlet.http.HttpServletRequest;
 
+/*
+ *
+ * @author dmitrii.kanaev
+ *
+ * Jul 7, 2018
+ */
+
 public class WebUtils
 {
     private static final String XML_HTTP_REQUEST = "XMLHttpRequest";

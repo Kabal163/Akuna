@@ -3,6 +3,13 @@ package com.akuna.security.auth.ajax;
 import com.fasterxml.jackson.annotation.JsonCreator;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
+/*
+ *
+ * @author dmitrii.kanaev
+ *
+ * Jul 7, 2018
+ */
+
 public class LoginRequest
 {
     private String username;

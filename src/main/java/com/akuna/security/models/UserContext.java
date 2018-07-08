@@ -10,20 +10,21 @@ import org.springframework.security.core.GrantedAuthority;
  * Jul 7, 2018
  */
 
+import java.util.List;
 import java.util.Set;
 
 public class UserContext
 {
     private final String username;
-    private final Set<GrantedAuthority> authorities;
+    private final List<GrantedAuthority> authorities;
 
-    private UserContext(String username, Set<GrantedAuthority> authorities)
+    private UserContext(String username, List<GrantedAuthority> authorities)
     {
         this.username = username;
         this.authorities = authorities;
     }
 
-    public static UserContext create(String username, Set<GrantedAuthority> authorities)
+    public static UserContext create(String username, List<GrantedAuthority> authorities)
     {
         if (StringUtils.isBlank(username)) throw new IllegalArgumentException("Username is blank");
         return new UserContext(username, authorities);
@@ -34,7 +35,7 @@ public class UserContext
         return username;
     }
 
-    public Set<GrantedAuthority> getAuthorities()
+    public List<GrantedAuthority> getAuthorities()
     {
         return authorities;
     }

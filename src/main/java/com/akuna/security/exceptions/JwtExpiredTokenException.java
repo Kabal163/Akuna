@@ -12,7 +12,7 @@ public class JwtExpiredTokenException extends AuthenticationException
         super(msg);
     }
 
-    public JwtExpiredTokenException(String msg, Throwable t, JwtToken token)
+    public JwtExpiredTokenException(JwtToken token, String msg, Throwable t)
     {
         super(msg, t);
         this.token = token;

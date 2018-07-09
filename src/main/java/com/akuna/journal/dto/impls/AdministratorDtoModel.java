@@ -7,29 +7,42 @@ import java.util.Objects;
 
 public class AdministratorDtoModel extends PersonDto
 {
-    private BigInteger secreteQuestionId;
-    private String secreteAnswer;
+    private BigInteger secretQuestionId;
+    private String secretAnswer;
 
-    public AdministratorDtoModel(String firstName, String lastName, String middleName, String email, String phoneNumber, String city, String street, BigInteger secreteQuestionId, String secreteAnswer) {
-        super(firstName, lastName, middleName, email, phoneNumber, city, street);
-        this.secreteQuestionId = secreteQuestionId;
-        this.secreteAnswer = secreteAnswer;
+    public AdministratorDtoModel(String firstName,
+                                 String lastName,
+                                 String middleName,
+                                 String email,
+                                 String phoneNumber,
+                                 String city,
+                                 String street,
+                                 String password,
+                                 String confirmPassword,
+                                 BigInteger secretQuestionId,
+                                 String secretAnswer)
+    {
+        super(firstName, lastName, middleName, email, phoneNumber, city, street, password, confirmPassword);
+        this.secretQuestionId = secretQuestionId;
+        this.secretAnswer = secretAnswer;
     }
 
-    public BigInteger getSecreteQuestionId() {
-        return secreteQuestionId;
+    public AdministratorDtoModel() {}
+
+    public BigInteger getSecretQuestionId() {
+        return secretQuestionId;
     }
 
-    public void setSecreteQuestionId(BigInteger secreteQuestionId) {
-        this.secreteQuestionId = secreteQuestionId;
+    public void setSecretQuestionId(BigInteger secretQuestionId) {
+        this.secretQuestionId = secretQuestionId;
     }
 
-    public String getSecreteAnswer() {
-        return secreteAnswer;
+    public String getSecretAnswer() {
+        return secretAnswer;
     }
 
-    public void setSecreteAnswer(String secreteAnswer) {
-        this.secreteAnswer = secreteAnswer;
+    public void setSecretAnswer(String secretAnswer) {
+        this.secretAnswer = secretAnswer;
     }
 
     @Override
@@ -38,21 +51,21 @@ public class AdministratorDtoModel extends PersonDto
         if (o == null || getClass() != o.getClass()) return false;
         if (!super.equals(o)) return false;
         AdministratorDtoModel that = (AdministratorDtoModel) o;
-        return Objects.equals(getSecreteQuestionId(), that.getSecreteQuestionId()) &&
-                Objects.equals(getSecreteAnswer(), that.getSecreteAnswer());
+        return Objects.equals(getSecretQuestionId(), that.getSecretQuestionId()) &&
+                Objects.equals(getSecretAnswer(), that.getSecretAnswer());
     }
 
     @Override
     public int hashCode() {
 
-        return Objects.hash(super.hashCode(), getSecreteQuestionId(), getSecreteAnswer());
+        return Objects.hash(super.hashCode(), getSecretQuestionId(), getSecretAnswer());
     }
 
     @Override
     public String toString() {
         return "AdministratorDtoModel{" +
-                "secreteQuestionId=" + secreteQuestionId +
-                ", secreteAnswer='" + secreteAnswer + '\'' +
+                "secretQuestionId=" + secretQuestionId +
+                ", secretAnswer='" + secretAnswer + '\'' +
                 '}';
     }
 }

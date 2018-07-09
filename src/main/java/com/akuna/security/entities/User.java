@@ -50,7 +50,9 @@ public class User extends AkunaEntity
         this.confirmPassword = confirmPassword;
     }
 
-    public User() {}
+    public User() {
+        this.roles = new HashSet<>();
+    }
 
     public String getUsername()
     {

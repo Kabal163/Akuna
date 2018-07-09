@@ -3,6 +3,7 @@ package com.akuna.journal.services;
 import com.akuna.journal.entities.impls.Administrator;
 import com.akuna.journal.entities.impls.Project;
 import com.akuna.journal.dao.AdministratorRepository;
+import com.akuna.security.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
@@ -14,21 +15,27 @@ import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatc
 @Service
 public class AdministratorService
 {
-    @Autowired
-    private AdministratorRepository repository;
+    private final AdministratorRepository repository;
+    private final UserService userService;
+    private final ProjectService projectService;
 
     @Autowired
-    private ProjectService projectService;
+    public AdministratorService(AdministratorRepository repository,
+                                UserService userService,
+                                ProjectService projectService)
+    {
+        this.repository = repository;
+        this.userService = userService;
+        this.projectService = projectService;
+    }
 
     @Transactional
     public boolean save(Administrator administrator)
     {
         if (exists(administrator)) return false;
 
-        Project project = projectService.getNewProject();
-        projectService.save(project);
-
-        administrator.setProject(project);
+        projectService.save(administrator.getProject());
+        userService.save(administrator.getUser());
         repository.save(administrator);
 
         return true;

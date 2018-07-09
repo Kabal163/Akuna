@@ -1,28 +1,30 @@
-package com.akuna.journal.services;
+package com.akuna.security.service;
 
 import com.akuna.journal.dao.SecretQuestionRepository;
 import com.akuna.security.entities.SecretQuestion;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.domain.Example;
 import org.springframework.data.domain.ExampleMatcher;
-import org.springframework.stereotype.Service;
+import org.springframework.stereotype.Component;
 
 import java.math.BigInteger;
 import java.util.List;
+import java.util.Optional;
 
 import static org.springframework.data.domain.ExampleMatcher.GenericPropertyMatchers.exact;
 
-@Service
-public class SecretQuestionService
+@Component
+public class SecretQuestionServiceImpl implements SecretQuestionService
 {
-    @Autowired
-    private SecretQuestionRepository repository;
+    private final SecretQuestionRepository repository;
 
-    public SecretQuestion getSecreteQuestionById(BigInteger id)
+    @Autowired
+    public SecretQuestionServiceImpl(SecretQuestionRepository repository)
     {
-        return repository.getOne(id);
+        this.repository = repository;
     }
 
+    @Override
     public List<SecretQuestion> getAll()
     {
         return repository.findAll();
@@ -44,5 +46,11 @@ public class SecretQuestionService
         Example<SecretQuestion> example = Example.of(secretQuestion, matcher);
 
         return repository.exists(example);
+    }
+
+    @Override
+    public Optional<SecretQuestion> getById(BigInteger id)
+    {
+        return repository.findById(id);
     }
 }

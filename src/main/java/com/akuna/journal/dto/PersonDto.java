@@ -11,8 +11,19 @@ public abstract class PersonDto
     private String phoneNumber;
     private String city;
     private String street;
+    private String password;
+    private String confirmPassword;
 
-    public PersonDto(String firstName, String lastName, String middleName, String email, String phoneNumber, String city, String street) {
+    public PersonDto(String firstName,
+                     String lastName,
+                     String middleName,
+                     String email,
+                     String phoneNumber,
+                     String city,
+                     String street,
+                     String password,
+                     String confirmPassword)
+    {
         this.firstName = firstName;
         this.lastName = lastName;
         this.middleName = middleName;
@@ -20,9 +31,30 @@ public abstract class PersonDto
         this.phoneNumber = phoneNumber;
         this.city = city;
         this.street = street;
+        this.password = password;
+        this.confirmPassword = confirmPassword;
     }
 
-    public PersonDto() {
+    public PersonDto() {}
+
+    public String getPassword()
+    {
+        return password;
+    }
+
+    public void setPassword(String password)
+    {
+        this.password = password;
+    }
+
+    public String getConfirmPassword()
+    {
+        return confirmPassword;
+    }
+
+    public void setConfirmPassword(String confirmPassword)
+    {
+        this.confirmPassword = confirmPassword;
     }
 
     public String getFirstName() {

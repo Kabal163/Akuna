@@ -7,7 +7,10 @@ package com.akuna.security.auth.jwt.verifier;
  * Jul 8, 2018
  */
 
+import org.springframework.stereotype.Component;
+
 //todo custom implementation
+@Component
 public class BloomFilterTokenVerifier implements TokenVerifier
 {
     @Override

@@ -1,4 +1,4 @@
-package com.akuna.security.endpoint;
+package com.akuna.security.rest.endpoint;
 
 import com.akuna.security.auth.jwt.extractor.TokenExtractor;
 import com.akuna.security.auth.jwt.verifier.TokenVerifier;
@@ -22,12 +22,14 @@ import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.bind.annotation.RestController;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.util.List;
 import java.util.stream.Collectors;
 
+@RestController
 public class RefreshTokenEndpoint
 {
     @Autowired private JwtTokenFactory tokenFactory;

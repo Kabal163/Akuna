@@ -1,30 +1,15 @@
 package com.akuna.journal.services;
 
 import com.akuna.journal.entities.impls.Project;
-import com.akuna.journal.dao.ProjectRepository;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Service;
 
 import java.math.BigInteger;
+import java.util.Optional;
 
-@Service
-public class ProjectService
+public interface ProjectService
 {
-    @Autowired
-    private ProjectRepository repository;
+    public void save(Project project);
 
-    public void save(Project project)
-    {
-        repository.save(project);
-    }
+    Optional<Project> getById(BigInteger id);
 
-    public Project getById(BigInteger id)
-    {
-        return repository.getOne(id);
-    }
-
-    public Project getNewProject()
-    {
-        return new Project();
-    }
+    Project getNewProject();
 }

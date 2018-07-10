@@ -26,7 +26,10 @@ public class Administrator extends Person
         this.secretAnswer = secretAnswer;
     }
 
-    public Administrator() {}
+    public Administrator(Project project)
+    {
+        super(project);
+    }
 
     public SecretQuestion getSecretQuestion()
     {

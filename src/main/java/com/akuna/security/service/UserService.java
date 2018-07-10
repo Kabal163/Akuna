@@ -9,4 +9,6 @@ public interface UserService
     void save(User user);
 
     Optional<User> getByUsername(String username);
+
+    boolean exists(User user);
 }

@@ -33,15 +33,15 @@ public abstract class Person extends AkunaEntity
     @Column(name = "email")
     private String email;
 
-    @OneToOne(fetch = FetchType.LAZY)
-    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-    private User user;
+//    @OneToOne(fetch = FetchType.LAZY)
+//    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+//    private User user;
 
     public Person(Project project) {
         super(project);
     }
 
-    public Person() {}
+    //public Person() {}
 
     public BigInteger getId()
     {
@@ -111,16 +111,9 @@ public abstract class Person extends AkunaEntity
         this.email = email;
     }
 
-    public User getUser() {
-        return user;
-    }
-
-    public void setUser(User user) {
-        this.user = user;
-    }
-
     @Override
-    public boolean equals(Object o) {
+    public boolean equals(Object o)
+    {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
         Person person = (Person) o;
@@ -130,18 +123,18 @@ public abstract class Person extends AkunaEntity
                 Objects.equals(getMiddleName(), person.getMiddleName()) &&
                 Objects.equals(getBirthday(), person.getBirthday()) &&
                 Objects.equals(getPhoneNumber(), person.getPhoneNumber()) &&
-                Objects.equals(getEmail(), person.getEmail()) &&
-                Objects.equals(getUser(), person.getUser());
+                Objects.equals(getEmail(), person.getEmail());
     }
 
     @Override
-    public int hashCode() {
-
-        return Objects.hash(getId(), getFirstName(), getLastName(), getMiddleName(), getBirthday(), getPhoneNumber(), getEmail(), getUser());
+    public int hashCode()
+    {
+        return Objects.hash(getId(), getFirstName(), getLastName(), getMiddleName(), getBirthday(), getPhoneNumber(), getEmail());
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Person{" +
                 "id=" + id +
                 ", firstName='" + firstName + '\'' +
@@ -150,7 +143,6 @@ public abstract class Person extends AkunaEntity
                 ", birthday=" + birthday +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
-                ", user=" + user +
                 '}';
     }
 }

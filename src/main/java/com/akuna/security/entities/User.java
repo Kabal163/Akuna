@@ -1,5 +1,6 @@
 package com.akuna.security.entities;
 
+import com.akuna.journal.entities.Person;
 import com.akuna.journal.entities.impls.Project;
 import com.akuna.journal.entities.AkunaEntity;
 import org.hibernate.validator.constraints.UniqueElements;
@@ -23,6 +24,10 @@ public class User extends AkunaEntity
 //    inverseJoinColumns = {@JoinColumn(name = "role_id", referencedColumnName = "role_id")})
 //    private Set<Role> roles;
 
+    @OneToOne
+    @JoinColumn(name = "person_id", referencedColumnName = "id")
+    private Person person;
+
     @ElementCollection(targetClass = Role.class)
     @CollectionTable(name = "user_role",
         joinColumns = @JoinColumn(name = "user_id"))
@@ -33,16 +38,18 @@ public class User extends AkunaEntity
     private String username;
 
     @Column(name = "password")
-    private String password;
+    private CharSequence password;
 
     @Column(name = "active")
     private boolean isActive;
 
     @Transient
-    private String confirmPassword;
+    private CharSequence confirmPassword;
 
-    public User(Set<Role> roles, String username, String password, boolean isActive, String confirmPassword)
+    public User(Project project, Person person, Set<Role> roles, String username, CharSequence password, boolean isActive, CharSequence confirmPassword)
     {
+        super(project);
+        this.person = person;
         this.roles = roles;
         this.username = username;
         this.password = password;
@@ -50,8 +57,19 @@ public class User extends AkunaEntity
         this.confirmPassword = confirmPassword;
     }
 
-    public User() {
+    public User(Project project) {
+        super(project);
         this.roles = new HashSet<>();
+    }
+
+    public Person getPerson()
+    {
+        return person;
+    }
+
+    public void setPerson(Person person)
+    {
+        this.person = person;
     }
 
     public String getUsername()
@@ -64,12 +82,12 @@ public class User extends AkunaEntity
         this.username = username;
     }
 
-    public String getPassword()
+    public CharSequence getPassword()
     {
         return password;
     }
 
-    public void setPassword(String password)
+    public void setPassword(CharSequence password)
     {
         this.password = password;
     }
@@ -94,12 +112,12 @@ public class User extends AkunaEntity
         this.roles = roles;
     }
 
-    public String getConfirmPassword()
+    public CharSequence getConfirmPassword()
     {
         return confirmPassword;
     }
 
-    public void setConfirmPassword(String confirmPassword)
+    public void setConfirmPassword(CharSequence confirmPassword)
     {
         this.confirmPassword = confirmPassword;
     }
@@ -118,9 +136,12 @@ public class User extends AkunaEntity
     public String toString()
     {
         return "User{" +
-                "username='" + username + '\'' +
+                "person=" + person +
+                ", roles=" + roles +
+                ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
                 ", isActive=" + isActive +
+                ", confirmPassword='" + confirmPassword + '\'' +
                 '}';
     }
 }

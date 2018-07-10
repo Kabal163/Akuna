@@ -1,6 +1,7 @@
 package com.akuna.journal.entities;
 
 import com.akuna.journal.entities.impls.Project;
+import com.akuna.journal.entities.visitor.PersonVisitor;
 import com.akuna.security.entities.User;
 
 import javax.persistence.*;
@@ -110,6 +111,8 @@ public abstract class Person extends AkunaEntity
     public void setEmail(String email) {
         this.email = email;
     }
+
+    public abstract void accept(PersonVisitor visitor);
 
     @Override
     public boolean equals(Object o)

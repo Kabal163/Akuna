@@ -1,6 +1,7 @@
 package com.akuna.journal.entities.impls;
 
 import com.akuna.journal.entities.Person;
+import com.akuna.journal.entities.visitor.PersonVisitor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -62,6 +63,12 @@ public class Student extends Person
     public void removeGroup(Group group)
     {
         this.groups.remove(group);
+    }
+
+    @Override
+    public void accept(PersonVisitor visitor)
+    {
+        visitor.visit(this);
     }
 
     @Override

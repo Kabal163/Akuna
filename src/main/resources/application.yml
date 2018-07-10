@@ -13,7 +13,7 @@ spring:
           temp:
             use_jdbc_metadata_defaults: false
     hibernate:
-      ddlAuto: validate
+      ddlAuto: create-drop
     show-sql: true
 
 akuna.security.jwc:

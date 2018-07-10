@@ -251,7 +251,7 @@ var AuthService = /** @class */ (function () {
     function AuthService(http) {
         this.http = http;
         this.secretQuestionsUrl = "/api/auth/register/secretQuestion";
-        this.registerUrl = "/api/auth/register/admin";
+        this.registerUrl = "/api/auth/register";
         this.loginUrl = "/api/auth/login";
     }
     AuthService.prototype.getSecretQuestions = function () {

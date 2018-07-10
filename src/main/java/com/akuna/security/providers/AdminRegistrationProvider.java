@@ -53,7 +53,7 @@ public class AdminRegistrationProvider implements RegistrationProvider<Administr
     {
         User user = new User(project);
         user.setUsername(model.getEmail());
-        user.setPassword(model.getPassword());
+        user.setPassword(model.getPassword().toString());
         user.setConfirmPassword(model.getConfirmPassword());
         user.setActive(true);
         user.addRole(Role.ADMIN);

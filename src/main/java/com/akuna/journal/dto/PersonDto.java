@@ -11,8 +11,8 @@ public abstract class PersonDto
     private String phoneNumber;
     private String city;
     private String street;
-    private String password;
-    private String confirmPassword;
+    private CharSequence password;
+    private CharSequence confirmPassword;
 
     public PersonDto(String firstName,
                      String lastName,
@@ -21,8 +21,8 @@ public abstract class PersonDto
                      String phoneNumber,
                      String city,
                      String street,
-                     String password,
-                     String confirmPassword)
+                     CharSequence password,
+                     CharSequence confirmPassword)
     {
         this.firstName = firstName;
         this.lastName = lastName;
@@ -37,22 +37,22 @@ public abstract class PersonDto
 
     public PersonDto() {}
 
-    public String getPassword()
+    public CharSequence getPassword()
     {
         return password;
     }
 
-    public void setPassword(String password)
+    public void setPassword(CharSequence password)
     {
         this.password = password;
     }
 
-    public String getConfirmPassword()
+    public CharSequence getConfirmPassword()
     {
         return confirmPassword;
     }
 
-    public void setConfirmPassword(String confirmPassword)
+    public void setConfirmPassword(CharSequence confirmPassword)
     {
         this.confirmPassword = confirmPassword;
     }

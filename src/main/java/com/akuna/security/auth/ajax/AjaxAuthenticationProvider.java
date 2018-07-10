@@ -50,7 +50,7 @@ public class AjaxAuthenticationProvider implements AuthenticationProvider
 
        User user = userService.getByUsername(username).orElseThrow(() -> new UsernameNotFoundException("User not found " + username));
 
-       if (!bCryptPasswordEncoder.matches(password, user.getPassword()))
+       if (!bCryptPasswordEncoder.matches(password, user.getPassword().toString()))
        {
            throw new BadCredentialsException("Authentication failed. Username or password not valid");
        }

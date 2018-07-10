@@ -7,3 +7,5 @@ GRANT ALL ON DATABASE Akuna to akuna_std;
 CREATE SCHEMA IF NOT EXISTS akuna_std AUTHORIZATION akuna_std;
 GRANT ALL PRIVILEGES ON SCHEMA akuna_std TO akuna_std;
 GRANT ALL PRIVILEGES ON ALL TABLES IN SCHEMA akuna_std TO akuna_std;
+
+INSERT INTO secret_question VALUES (1, 'Ваша девичья фамилия');

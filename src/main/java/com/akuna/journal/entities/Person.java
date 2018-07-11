@@ -1,7 +1,6 @@
 package com.akuna.journal.entities;
 
 import com.akuna.journal.entities.impls.Project;
-import com.akuna.journal.entities.visitor.PersonVisitor;
 import com.akuna.security.entities.User;
 
 import javax.persistence.*;
@@ -34,9 +33,9 @@ public abstract class Person extends AkunaEntity
     @Column(name = "email")
     private String email;
 
-//    @OneToOne(fetch = FetchType.LAZY)
-//    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
-//    private User user;
+    @OneToOne(fetch = FetchType.LAZY)
+    @JoinColumn(name = "user_id", referencedColumnName = "user_id")
+    private User user;
 
     public Person(Project project) {
         super(project);
@@ -112,7 +111,16 @@ public abstract class Person extends AkunaEntity
         this.email = email;
     }
 
-    public abstract void accept(PersonVisitor visitor);
+    public User getUser()
+    {
+        return user;
+    }
+
+    public void setUser(User user)
+    {
+        this.user = user;
+    }
+
 
     @Override
     public boolean equals(Object o)
@@ -126,13 +134,15 @@ public abstract class Person extends AkunaEntity
                 Objects.equals(getMiddleName(), person.getMiddleName()) &&
                 Objects.equals(getBirthday(), person.getBirthday()) &&
                 Objects.equals(getPhoneNumber(), person.getPhoneNumber()) &&
-                Objects.equals(getEmail(), person.getEmail());
+                Objects.equals(getEmail(), person.getEmail()) &&
+                Objects.equals(getUser(), person.getUser());
     }
 
     @Override
     public int hashCode()
     {
-        return Objects.hash(getId(), getFirstName(), getLastName(), getMiddleName(), getBirthday(), getPhoneNumber(), getEmail());
+
+        return Objects.hash(getId(), getFirstName(), getLastName(), getMiddleName(), getBirthday(), getPhoneNumber(), getEmail(), getUser());
     }
 
     @Override
@@ -146,6 +156,7 @@ public abstract class Person extends AkunaEntity
                 ", birthday=" + birthday +
                 ", phoneNumber='" + phoneNumber + '\'' +
                 ", email='" + email + '\'' +
+                ", user=" + user +
                 '}';
     }
 }

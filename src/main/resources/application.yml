@@ -1,20 +1,6 @@
 spring:
-  datasource:
-    driver-class-name: org.postgresql.Driver
-    platform: postgresql
-    password: akuna_std
-    username: akuna_std
-    url: jdbc:postgresql://localhost:7777/akuna
-  jpa:
-    properties:
-       hibernate:
-          dialect: org.hibernate.dialect.PostgreSQL94Dialect
-          default_schema: akuna_std
-          temp:
-            use_jdbc_metadata_defaults: false
-    hibernate:
-      ddlAuto: create-drop
-    show-sql: true
+  profiles:
+    active: "dev"
 
 akuna.security.jwc:
  tokenExpirationTime: 15 # Number of minutes
@@ -24,3 +10,4 @@ akuna.security.jwc:
 
 server:
   port: 8181
+

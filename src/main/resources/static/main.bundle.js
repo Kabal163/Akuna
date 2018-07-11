@@ -261,7 +261,9 @@ var AuthService = /** @class */ (function () {
         return this.http.post(this.registerUrl, userRegisterForm);
     };
     AuthService.prototype.login = function (userLoginForm) {
-        return this.http.post(this.loginUrl, userLoginForm);
+        var headers = new __WEBPACK_IMPORTED_MODULE_1__angular_common_http__["c" /* HttpHeaders */]();
+        headers.append("X-Requested-With", "XMLHttpRequest");
+        return this.http.post(this.loginUrl, userLoginForm, { headers: headers });
     };
     AuthService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),

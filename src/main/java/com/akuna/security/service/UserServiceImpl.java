@@ -70,8 +70,7 @@ public class UserServiceImpl implements UserService
     public boolean exists(User user)
     {
         ExampleMatcher matcher = ExampleMatcher.matching()
-                .withMatcher("phoneNumber", exact())
-                .withMatcher("email", exact());
+                .withMatcher("username", exact());
 
         Example<User> example = Example.of(user, matcher);
 

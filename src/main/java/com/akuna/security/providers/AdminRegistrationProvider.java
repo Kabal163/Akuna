@@ -12,9 +12,9 @@ import com.akuna.security.service.UserService;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
+import org.springframework.transaction.annotation.Transactional;
 
 import javax.persistence.EntityNotFoundException;
-import javax.transaction.Transactional;
 
 @Component
 public class AdminRegistrationProvider implements RegistrationProvider<AdministratorDtoModel>
@@ -42,24 +42,12 @@ public class AdminRegistrationProvider implements RegistrationProvider<Administr
     @Transactional
     public void register(AdministratorDtoModel model)
     {
-        User user = createUser(model);
+        Administrator administrator = createAdministrator(model);
+        administrator.setUser(createUser(model));
 
         projectService.save(project);
-        administratorService.save((Administrator) user.getPerson());
-        userService.save(user);
-    }
-
-    private User createUser(AdministratorDtoModel model)
-    {
-        User user = new User(project);
-        user.setUsername(model.getEmail());
-        user.setPassword(model.getPassword().toString());
-        user.setConfirmPassword(model.getConfirmPassword());
-        user.setActive(true);
-        user.addRole(Role.ADMIN);
-        user.setPerson(createAdministrator(model));
-
-        return user;
+        userService.save(administrator.getUser());
+        administratorService.save(administrator);
     }
 
     private Administrator createAdministrator(AdministratorDtoModel model)
@@ -78,4 +66,15 @@ public class AdminRegistrationProvider implements RegistrationProvider<Administr
         return administrator;
     }
 
+    private User createUser(AdministratorDtoModel model)
+    {
+        User user = new User(project);
+        user.setUsername(model.getEmail());
+        user.setPassword(model.getPassword().toString());
+        user.setConfirmPassword(model.getConfirmPassword());
+        user.setActive(true);
+        user.addRole(Role.ADMIN);
+
+        return user;
+    }
 }

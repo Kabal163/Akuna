@@ -1,7 +1,6 @@
 package com.akuna.journal.entities.impls;
 
 import com.akuna.journal.entities.Person;
-import com.akuna.journal.entities.visitor.PersonVisitor;
 import com.akuna.security.entities.SecretQuestion;
 
 import javax.persistence.*;
@@ -40,12 +39,6 @@ public class Administrator extends Person
     public String getSecretAnswer()
     {
         return secretAnswer;
-    }
-
-    @Override
-    public void accept(PersonVisitor visitor)
-    {
-        visitor.visit(this);
     }
 
     @Override

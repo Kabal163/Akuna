@@ -1,7 +1,6 @@
 package com.akuna.journal.entities.impls;
 
 import com.akuna.journal.entities.Person;
-import com.akuna.journal.entities.visitor.PersonVisitor;
 
 import javax.persistence.*;
 import java.util.ArrayList;
@@ -50,12 +49,6 @@ public class Parent extends Person
     public void removeStudent(Student student)
     {
         this.students.remove(student);
-    }
-
-    @Override
-    public void accept(PersonVisitor visitor)
-    {
-        visitor.visit(this);
     }
 
     @Override

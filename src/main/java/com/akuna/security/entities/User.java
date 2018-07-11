@@ -21,7 +21,7 @@ public class User extends AkunaEntity
 //    private Set<Role> roles;
 
 
-    @ElementCollection(targetClass = Role.class)
+    @ElementCollection(targetClass = Role.class, fetch=FetchType.EAGER)
     @CollectionTable(name = "user_role",
         joinColumns = @JoinColumn(name = "user_id"))
     @Column(name = "role")
@@ -58,6 +58,10 @@ public class User extends AkunaEntity
     public User(Project project) {
         super(project);
         this.roles = new HashSet<>();
+    }
+
+    public User()
+    {
     }
 
     public String getUsername()

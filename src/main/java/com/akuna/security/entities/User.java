@@ -8,7 +8,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 @Entity
-@Table(name = "users", schema = "akuna_std")
+@Table(name = "users")
 @AttributeOverrides({
         @AttributeOverride(name = "id", column = @Column(name = "user_id"))
 })

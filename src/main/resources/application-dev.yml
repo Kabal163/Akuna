@@ -3,7 +3,7 @@ spring:
         driver-class-name: org.h2.Driver
         username: "sa"
         password: "sa"
-        url: jdbc:h2:file:~/test
+        url: jdbc:h2:~/test
     h2:
         console:
           enabled: true
@@ -11,9 +11,12 @@ spring:
     jpa:
             properties:
                hibernate:
+                  physical_naming_strategy: com.akuna.config.CustomDatabaseIdentifierNamingStrategy
                   dialect: org.hibernate.dialect.H2Dialect
+                  default_schema: PUBLIC
+                  default_catalog: TEST
                   temp:
                     use_jdbc_metadata_defaults: false
             hibernate:
-              ddlAuto: create-drop
+              ddlAuto: validate
             show-sql: true

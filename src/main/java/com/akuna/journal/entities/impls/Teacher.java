@@ -30,6 +30,8 @@ public class Teacher extends Person
         super(project);
     }
 
+    public Teacher() {}
+
     public List<Section> getSections()
     {
         return sections;

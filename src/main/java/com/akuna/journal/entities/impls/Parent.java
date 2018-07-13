@@ -31,6 +31,8 @@ public class Parent extends Person
         this.students.add(student);
     }
 
+    public Parent() {}
+
     public List<Student> getStudents()
     {
         return students;

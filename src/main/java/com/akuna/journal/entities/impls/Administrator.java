@@ -31,6 +31,8 @@ public class Administrator extends Person
         super(project);
     }
 
+    public Administrator() {}
+
     public SecretQuestion getSecretQuestion()
     {
         return secretQuestion;

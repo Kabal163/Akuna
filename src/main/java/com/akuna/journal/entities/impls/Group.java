@@ -46,6 +46,8 @@ public class Group extends AkunaEntity
         this.groupNumber = groupNumber;
     }
 
+    public Group() {}
+
     public List<Section> getSections()
     {
         return sections;

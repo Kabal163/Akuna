@@ -5,7 +5,7 @@ import com.akuna.journal.entities.AbstractEntity;
 import javax.persistence.*;
 
 @Entity
-@Table(name = "secret_question", schema = "akuna_std")
+@Table(name = "secret_question")
 @AttributeOverrides({
         @AttributeOverride(name = "id", column = @Column(name = "question_id"))
 })

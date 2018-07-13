@@ -1,9 +1,9 @@
 spring:
   profiles:
-    active: "home"
+    active: "dev"
 
 akuna.security.jwc:
- tokenExpirationTime: 15 # Number of minutes
+ tokenExpirationTime: 5 # Number of minutes
  refreshTokenExpirationTime: 60 # Minutes
  tokenIssuer: http://akuna.com
  tokenSigningKey: xm8EV6Hy5RMFK4EEACIDAwQus

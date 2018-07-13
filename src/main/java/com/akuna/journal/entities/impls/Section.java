@@ -34,6 +34,8 @@ public class Section extends AkunaEntity
         this.sectionName = sectionName;
     }
 
+    public Section() {}
+
     public List<Group> getGroups()
     {
         return groups;

@@ -24,6 +24,8 @@ public class Student extends Person
         super(project);
     }
 
+    public Student() {}
+
     public List<Parent> getParents()
     {
         return parents;

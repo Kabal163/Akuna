@@ -41,7 +41,7 @@ public abstract class Person extends AkunaEntity
         super(project);
     }
 
-    //public Person() {}
+    public Person() {}
 
     public BigInteger getId()
     {

@@ -1,0 +1,264 @@
+<div class="container" *ngIf="loginAction">
+  <form class="form-horizontal" role="form" method="POST">
+    <div class="row">
+      <div class="col-md-3 offset-md-3">
+        <h2>Вход</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-group has-danger">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <input [(ngModel)]="userLoginForm.username" type="text" name="email" class="form-control" id="email"
+                   placeholder="email@example.com" required autofocus ={{principle}}>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                        </span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-group">
+          <label class="sr-only" for="password">Password</label>
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <input [(ngModel)]="userLoginForm.password" type="password" name="password" class="form-control" id="password"
+                   placeholder="Пароль" required value={{credential}}>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                        <!-- Put password error message here -->
+                        </span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3" style="padding-top: .35rem">
+        <div class="form-check mb-2 mr-sm-2 mb-sm-0">
+          <label class="form-check-label">
+            <input [(ngModel)]="rememberMe" class="form-check-input" name="remember"
+                   type="checkbox" >
+            <span style="padding-bottom: .15rem">Запомнить меня</span>
+          </label>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 1rem">
+      <div class="col-md-6 offset-md-3">
+        <button type="submit" class="btn btn-success" (click)="login()">Войти</button>
+        <a class="btn btn-link" href="#">Забыли пароль?</a>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 offset-md-4">
+        <hr>
+        <div class="row justify-content-md-center">
+          <h6 (click)="loginAction = false" class="change-action">Зарегистрироваться</h6>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>
+<div class="container" *ngIf="!loginAction">
+  <form class="form-horizontal" role="form" method="POST">
+    <div class="row">
+      <div class="col-md-3 offset-md-3">
+        <h2>Регистрация</h2>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-group has-danger">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <input [(ngModel)]="userRegisterForm.firstName" type="text" name="firstName" class="form-control" id="firstName"
+                   placeholder="Имя" required autofocus>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                        </span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-group">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <input [(ngModel)]="userRegisterForm.lastName" type="text" name="lastName" class="form-control" id="lastName"
+                   placeholder="Фамилия" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                        <!-- Put password error message here -->
+                        </span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-group">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <input [(ngModel)]="userRegisterForm.middleName" type="text" name="middleName" class="form-control" id="middleName"
+                   placeholder="Отчество" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                        <!-- Put password error message here -->
+                        </span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-group">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <input [(ngModel)]="userRegisterForm.email" type="text" name="email" class="form-control" id="email"
+                   placeholder="email@example.com" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                        <!-- Put password error message here -->
+                        </span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-group">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <input [(ngModel)]="userRegisterForm.password" type="password" name="password" class="form-control" id="password"
+                   placeholder="Пароль" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                        <!-- Put password error message here -->
+                        </span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-group">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <input [(ngModel)]="userRegisterForm.confirmPassword" type="password" name="confirmPassword" class="form-control" id="confirmPassword"
+                   placeholder="Повторите пароль" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3" *ngIf="differentPasswords">
+        <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                        Пароли не совпадают!
+                        </span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-group">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <input [(ngModel)]="userRegisterForm.phoneNumber" type="text" name="phoneNumber" class="form-control" id="phoneNumber"
+                   placeholder="Телефон" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                        <!-- Put password error message here -->
+                        </span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-group">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <input [(ngModel)]="userRegisterForm.city" type="text" name="city" class="form-control" id="city"
+                   placeholder="Город" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                        <!-- Put password error message here -->
+                        </span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-group">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <select id="inputSecretQuestion" [(ngModel)]="userRegisterForm.secretQuestionId" name="secretQuestion" class="form-control">
+              <option *ngFor="let secretQuestion of secretQuestions" [ngValue]="secretQuestion.id" [selected]="secretQuestion.id == 1">
+                {{secretQuestion.question}}
+              </option>
+            </select>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                        <!-- Put password error message here -->
+                        </span>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="form-group">
+          <div class="input-group mb-2 mr-sm-2 mb-sm-0">
+            <input [(ngModel)]="userRegisterForm.secretAnswer" type="text" name="secretAnswer" class="form-control" id="secretAnswer"
+                   placeholder="Ответ на секретный вопрос" required>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-3">
+        <div class="form-control-feedback">
+                        <span class="text-danger align-middle">
+                        <!-- Put password error message here -->
+                        </span>
+        </div>
+      </div>
+    </div>
+    <div class="row" style="padding-top: 1rem">
+      <div class="col-md-6 offset-md-3">
+        <div class="row justify-content-md-center">
+          <button type="submit" class="btn btn-success" (click)="register()">Зарегистрироваться</button>
+        </div>
+      </div>
+    </div>
+    <div class="row">
+      <div class="col-md-4 offset-md-4">
+        <hr>
+        <div class="row justify-content-md-center">
+          <h6 (click)="loginAction = true" class="change-action">У меня есть аккаунт</h6>
+        </div>
+      </div>
+    </div>
+  </form>
+</div>

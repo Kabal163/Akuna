@@ -34,8 +34,20 @@
                 <configuration>
                     <nodeVersion>8.11.1</nodeVersion>
                     <npmVersion>5.6.0</npmVersion>
+                    <workingDirectory>src/main/ngapp</workingDirectory>
                 </configuration>
                 <executions>
+
+                    <execution>
+                        <id>install node and npm</id>
+                        <goals>
+                            <goal>install-node-and-npm</goal>
+                        </goals>
+                        <phase>generate-resources</phase>
+                        <configuration>
+                            <nodeVersion>v8.11.1</nodeVersion>
+                        </configuration>
+                    </execution>
 
                     <execution>
                         <id>npm run-script build</id>
@@ -45,8 +57,6 @@
                         </goals>
                         <configuration>
                             <arguments>run-script build</arguments>
-                            <installDirectory>C:\Program Files</installDirectory>
-                            <workingDirectory>src/main/ngapp</workingDirectory>
                         </configuration>
                     </execution>
 

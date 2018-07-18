@@ -1,15 +1,15 @@
 import {NgModule} from "@angular/core";
 import {AccountComponent} from "./components/account/account.component";
-import {BrowserModule} from "@angular/platform-browser";
 import {FormsModule} from "@angular/forms";
 import {LogoComponent} from "./components/logo/logo.component";
-import {NavigationComponent} from "./components/navigation/navigation.component";
 import {HeaderComponent} from './header.component';
+import {CommonModule} from "@angular/common";
+import {AuthService} from "../../components/auth/auth.service";
 
 @NgModule({
-  declarations: [AccountComponent, LogoComponent, NavigationComponent],
-  imports: [BrowserModule, FormsModule],
-  exports: [AccountComponent, LogoComponent, NavigationComponent, HeaderComponent],
+  declarations: [AccountComponent, LogoComponent, HeaderComponent],
+  exports: [AccountComponent, LogoComponent, HeaderComponent],
+  imports: [FormsModule, CommonModule],
   providers: []
 })
 export class HeaderModule {

@@ -66,7 +66,7 @@ export class AuthService
 
   getCurrentRole()
   {
-
+    return localStorage.getItem("role");
   }
 
 

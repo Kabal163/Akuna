@@ -18,7 +18,7 @@ export class AppComponent
     }
     else
     {
-
+      if (this.auth.getCurrentRole() === "ADMIN") this.router.navigateByUrl("/admin");
     }
   }
 

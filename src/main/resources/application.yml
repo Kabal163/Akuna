@@ -1,6 +1,6 @@
 spring:
   profiles:
-    active: "home"
+    active: "dev"
 
 akuna.security.jwc:
  tokenExpirationTime: 5 # Number of minutes

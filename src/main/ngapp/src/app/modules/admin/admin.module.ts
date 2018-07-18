@@ -4,6 +4,7 @@ import {RouterModule} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 import {NgModule} from "@angular/core";
 import {HeaderModule} from "../header/header.module";
+import {SidebarModule} from "../sidebar/sidebar.module";
 
 let routing = RouterModule.forChild([
   {path: "", component: AdminComponent}
@@ -13,7 +14,9 @@ let routing = RouterModule.forChild([
   imports: [
     routing,
     CommonModule,
-    FormsModule],
+    FormsModule,
+    HeaderModule,
+    SidebarModule],
   exports: [AdminComponent],
   declarations: [AdminComponent]
 })

@@ -25,7 +25,6 @@ import {HeaderModule} from "./modules/header/header.module";
     BrowserModule,
     HttpClientModule,
     FormsModule,
-    HeaderModule,
     RouterModule.forRoot([
       {path: "admin", loadChildren: "app/modules/admin/admin.module#AdminModule"},
       {path: "teacher", loadChildren: "app/modules/teacher/teacher.module#TeacherModule"},

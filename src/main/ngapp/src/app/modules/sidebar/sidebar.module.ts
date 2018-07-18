@@ -3,11 +3,11 @@ import {SidebarComponent} from './sidebar.component';
 import {BrowserModule} from '@angular/platform-browser';
 import {HttpModule} from '@angular/http';
 import {FormsModule} from '@angular/forms';
-import {AppRoutingModule} from '../routing/routing.module';
+import {CommonModule} from "@angular/common";
 
 @NgModule({
   declarations: [SidebarComponent],
-  imports: [BrowserModule, FormsModule, AppRoutingModule],
+  imports: [FormsModule, CommonModule],
   exports: [SidebarComponent],
   providers: []
 })

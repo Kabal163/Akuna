@@ -10,3 +10,6 @@ src/main/resources/persistence-h2.properties
 src/main/resources/application.yml
 src/main/resources/application.yml
 src/main/resources/application.yml
+src/main/ngapp/node
+src/main/ngapp/node_modules
+src/main/resources/static

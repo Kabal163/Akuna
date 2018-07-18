@@ -337,6 +337,8 @@ var AppComponent = /** @class */ (function () {
             this.router.navigateByUrl("/login");
         }
         else {
+            if (this.auth.getCurrentRole() === "ADMIN")
+                this.router.navigateByUrl("/admin");
         }
     }
     AppComponent = __decorate([
@@ -438,9 +440,6 @@ module.exports = "<div class=\"container\" *ngIf=\"loginAction\">\r\n  <form cla
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__("./node_modules/@angular/core/esm5/core.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__auth_model__ = __webpack_require__("./src/app/components/auth/auth.model.ts");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__auth_service__ = __webpack_require__("./src/app/components/auth/auth.service.ts");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment__ = __webpack_require__("./node_modules/moment/moment.js");
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_moment___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_moment__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -453,13 +452,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
 var AuthComponent = /** @class */ (function () {
-    function AuthComponent(authService, router) {
+    function AuthComponent(authService) {
         var _this = this;
         this.authService = authService;
-        this.router = router;
         this.userLoginForm = new __WEBPACK_IMPORTED_MODULE_1__auth_model__["a" /* UserLoginForm */]();
         this.userRegisterForm = new __WEBPACK_IMPORTED_MODULE_1__auth_model__["b" /* UserRegisterForm */]();
         this.principle = localStorage.getItem("login");
@@ -468,86 +464,24 @@ var AuthComponent = /** @class */ (function () {
         this.authService.getSecretQuestions().subscribe(function (data) { return _this.secretQuestions = data; });
     }
     AuthComponent.prototype.register = function () {
+        var _this = this;
         if (this.userRegisterForm.confirmPassword != this.userRegisterForm.password) {
             this.differentPasswords = true;
         }
         else {
             this.differentPasswords = false;
             console.log(this.userRegisterForm);
-            this.authService.register(this.userRegisterForm).subscribe(function (data) { return console.log(data); });
+            this.authService.register(this.userRegisterForm).subscribe(function (data) {
+                console.log(data);
+                _this.userLoginForm.username = _this.userRegisterForm.email;
+                _this.userLoginForm.password = _this.userRegisterForm.password;
+                _this.login();
+            });
         }
     };
     AuthComponent.prototype.login = function () {
         var _this = this;
-        this.authService.login(this.userLoginForm).subscribe(function (authResult) { return _this.setSession(authResult); });
-    };
-    AuthComponent.prototype.setSession = function (authResult) {
-        console.log("setSession method");
-        var rawToken = authResult.token;
-        var refreshToken = authResult.refreshToken;
-        var token = this.authService.getDecodedAccessToken(rawToken);
-        console.log("decoded sub: " + token.sub);
-        console.log("decoded exp: " + token.exp);
-        console.log("decoded scopes: " + token.scopes);
-        var expiresAt = __WEBPACK_IMPORTED_MODULE_3_moment__().add(token.exp, 'second');
-        var role = this.resolveRole(token.scopes);
-        localStorage.setItem('token', rawToken);
-        localStorage.setItem("refreshToken", refreshToken);
-        localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
-        localStorage.setItem("role", role);
-        this.navigateToHomePage(role);
-    };
-    AuthComponent.prototype.navigateToHomePage = function (role) {
-        if (role === "ADMIN")
-            this.router.navigateByUrl("/admin");
-        else if (role === "TEACHER")
-            this.router.navigateByUrl("/teacher");
-        else if (role === "PARENT")
-            this.router.navigateByUrl("/parent");
-        else if (role === "STUDENT")
-            this.router.navigateByUrl("/student");
-        else {
-            console.log("No one role is valid");
-            this.authService.logout();
-            this.router.navigateByUrl("/login");
-        }
-    };
-    /* The method tries to retrieve the most important role for the user.
-     *
-     * Roles priority:
-     * 1. ADMIN
-     * 2. TEACHER
-     * 3. PARENT
-     * 4. STUDENT
-     *
-     * It needs in case when the user has multiple roles.
-     */
-    AuthComponent.prototype.resolveRole = function (scopes) {
-        var role;
-        if (scopes.length == 0) {
-            return null;
-        }
-        if (scopes.length == 1) {
-            role = scopes[0];
-        }
-        else {
-            for (var element in scopes) {
-                if (element === "ADMIN") {
-                    role = element;
-                    break;
-                }
-                else if (element === "TEACHER") {
-                    role = element;
-                }
-                else if ((element === "PARENT" && !role) || role === "STUDENT") {
-                    role = element;
-                }
-                else if (element === "STUDENT" && !role) {
-                    role = element;
-                }
-            }
-        }
-        return role;
+        this.authService.login(this.userLoginForm).subscribe(function (authResult) { return _this.authService.setSession(authResult); });
     };
     AuthComponent = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
@@ -555,8 +489,7 @@ var AuthComponent = /** @class */ (function () {
             template: __webpack_require__("./src/app/components/auth/auth.component.html"),
             styles: [__webpack_require__("./src/app/components/auth/auth.component.css")]
         }),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__auth_service__["a" /* AuthService */],
-            __WEBPACK_IMPORTED_MODULE_4__angular_router__["a" /* Router */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_2__auth_service__["a" /* AuthService */]])
     ], AuthComponent);
     return AuthComponent;
 }());
@@ -614,6 +547,7 @@ var Token = /** @class */ (function () {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_rxjs_add_operator_shareReplay__ = __webpack_require__("./node_modules/rxjs/_esm5/add/operator/shareReplay.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jwt_decode__ = __webpack_require__("./node_modules/jwt-decode/lib/index.js");
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5_jwt_decode___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_5_jwt_decode__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_router__ = __webpack_require__("./node_modules/@angular/router/esm5/router.js");
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -629,9 +563,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var AuthService = /** @class */ (function () {
-    function AuthService(http) {
+    function AuthService(http, router) {
         this.http = http;
+        this.router = router;
         this.secretQuestionsUrl = "/api/auth/register/secretQuestion";
         this.registerUrl = "/api/auth/register";
         this.loginUrl = "/api/auth/login";
@@ -652,6 +588,7 @@ var AuthService = /** @class */ (function () {
         localStorage.removeItem("token");
         localStorage.removeItem("expires_at");
         localStorage.removeItem("refreshToken");
+        this.router.navigateByUrl("/login");
     };
     AuthService.prototype.isLoggedIn = function () {
         return __WEBPACK_IMPORTED_MODULE_2_moment__().isBefore(this.getExpiration());
@@ -673,10 +610,80 @@ var AuthService = /** @class */ (function () {
         }
     };
     AuthService.prototype.getCurrentRole = function () {
+        return localStorage.getItem("role");
+    };
+    AuthService.prototype.setSession = function (authResult) {
+        console.log("setSession method");
+        var rawToken = authResult.token;
+        var refreshToken = authResult.refreshToken;
+        var token = this.getDecodedAccessToken(rawToken);
+        console.log("decoded sub: " + token.sub);
+        console.log("decoded exp: " + token.exp);
+        console.log("decoded scopes: " + token.scopes);
+        var expiresAt = __WEBPACK_IMPORTED_MODULE_2_moment__().add(token.exp, 'second');
+        var role = this.resolveRole(token.scopes);
+        localStorage.setItem('token', rawToken);
+        localStorage.setItem("refreshToken", refreshToken);
+        localStorage.setItem("expires_at", JSON.stringify(expiresAt.valueOf()));
+        localStorage.setItem("role", role);
+        this.navigateToHomePage(role);
+    };
+    AuthService.prototype.navigateToHomePage = function (role) {
+        if (role === "ADMIN")
+            this.router.navigateByUrl("/admin");
+        else if (role === "TEACHER")
+            this.router.navigateByUrl("/teacher");
+        else if (role === "PARENT")
+            this.router.navigateByUrl("/parent");
+        else if (role === "STUDENT")
+            this.router.navigateByUrl("/student");
+        else {
+            console.log("No one role is valid");
+            this.logout();
+            this.router.navigateByUrl("/login");
+        }
+    };
+    /* The method tries to retrieve the most important role for the user.
+     *
+     * Roles priority:
+     * 1. ADMIN
+     * 2. TEACHER
+     * 3. PARENT
+     * 4. STUDENT
+     *
+     * It needs in case when the user has multiple roles.
+     */
+    AuthService.prototype.resolveRole = function (scopes) {
+        var role;
+        if (scopes.length == 0) {
+            return null;
+        }
+        if (scopes.length == 1) {
+            role = scopes[0];
+        }
+        else {
+            for (var element in scopes) {
+                if (element === "ADMIN") {
+                    role = element;
+                    break;
+                }
+                else if (element === "TEACHER") {
+                    role = element;
+                }
+                else if ((element === "PARENT" && !role) || role === "STUDENT") {
+                    role = element;
+                }
+                else if (element === "STUDENT" && !role) {
+                    role = element;
+                }
+            }
+        }
+        return role;
     };
     AuthService = __decorate([
         Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["A" /* Injectable */])(),
-        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */]])
+        __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_common_http__["a" /* HttpClient */],
+            __WEBPACK_IMPORTED_MODULE_6__angular_router__["a" /* Router */]])
     ], AuthService);
     return AuthService;
 }());
